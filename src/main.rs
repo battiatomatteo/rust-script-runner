@@ -9,7 +9,7 @@ use chrono::{DateTime, Local};
 
 fn menu_principale (){
     // 1. percorso della cartella da leggere 
-    let mut path = String::from("C:\\Users\\baddy\\Desktop\\progetto_rust\\script_bat");
+    let mut path = String::from("C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\script_bat");
 
     loop {
         println!("\n{}","\n=== MENU PRINCIPALE ===".bold().blue());

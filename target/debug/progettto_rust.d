@@ -1,1 +1,1 @@
-C:\Users\baddy\Desktop\progetto_rust\target\debug\progettto_rust.exe: C:\Users\baddy\Desktop\progetto_rust\src\main.rs
+C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\target\debug\progettto_rust.exe: C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\src\main.rs
