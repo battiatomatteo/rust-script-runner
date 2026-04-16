@@ -1,3 +1,5 @@
+# rust-script-runner
+
 Questa guida riassume e spiega in modo chiaro e strutturato tutto ciò che hai costruito finora nel tuo progetto Rust: un **gestore di script interattivo**, completo di menu, colori, descrizioni file e lancio degli script in nuove finestre.
 
 ---
