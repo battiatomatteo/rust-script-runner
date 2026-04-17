@@ -18,7 +18,7 @@ pub fn menu_principale() {
         }
 
         let opzioni = vec![
-            "Lista script ed esegui",
+            "Lista script da eseguire",
             "Cambia cartella",
             "Esci",
         ];
