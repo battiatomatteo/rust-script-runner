@@ -6,14 +6,50 @@ use colored::*;
 use dialoguer::{Select, Input};
 use std::time::{SystemTime};
 use chrono::{DateTime, Local};
+use serde::{Deserialize, Serialize};
+
+#[derive(Deserialize, Serialize, Debug)]
+struct Config {
+    cartella: String,
+    menu: MenuConfig,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+struct MenuConfig {
+    colori: bool,
+    mostra_descrizione: bool,
+}
+
+fn carica_config() -> Config {
+    let contenuto = std::fs::read_to_string("config.toml")
+        .expect("Impossibile leggere config.toml");
+
+    toml::from_str(&contenuto)
+        .expect("Errore nel parsing del file TOML")
+}
+
+fn salva_config(config: &Config) {
+    let toml_string = toml::to_string(config).expect("Errore nella conversione in TOML");
+
+    std::fs::write("config.toml", toml_string)
+        .expect("Impossibile salvare config.toml");
+}
 
 fn menu_principale (){
+    let mut config = carica_config();   // 0. carico la configurazione dal file config.toml, se il file non esiste, viene creato con i valori di default
+
     // 1. percorso della cartella da leggere 
-    let mut path = String::from("C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\script_bat");
+    let mut path = config.cartella.clone();
 
     loop {
-        println!("\n{}","\n=== MENU PRINCIPALE ===".bold().blue());
-        println!("Cartella attuale: {}", path.yellow());
+        if config.menu.colori {
+            println!("\n{}", "=== MENU PRINCIPALE ===".bold().blue());
+            println!("Cartella attuale: {}", path.yellow());
+        } else {
+            println!("\n=== MENU PRINCIPALE ===");
+            println!("Cartella attuale: {}", path);
+        }
+
 
         let opzioni = vec![
             "Lista script ed esegui",
@@ -36,7 +72,7 @@ fn menu_principale (){
                 if files.is_empty() {
                     println!("Nessun file trovato .");
                 }else {
-                    scegli_file(&files);
+                    scegli_file(&files, &config, config.menu.colori);
                 }
             }
             1 => {
@@ -46,6 +82,10 @@ fn menu_principale (){
                     .unwrap();
 
                 path = nuovo_path.trim().to_string();
+
+                // Salvo nel TOML
+                config.cartella = path.clone();
+                salva_config(&config);
             }
             2 => {
                 println!("{}", "Uscita in corso...".red().bold());
@@ -56,7 +96,7 @@ fn menu_principale (){
     }
 }
 
-fn scegli_file(files: &Vec<String>) {
+fn scegli_file(files: &Vec<String>, config: &Config, usa_colori: bool) {
     println!("{}", "\nInserisci il numero del file da eseguire:".bold().yellow());
 
     let mut opzioni = files.clone();  // creo una copia del vec così da poter inserire l'opzione di annullamento
@@ -75,9 +115,16 @@ fn scegli_file(files: &Vec<String>) {
     }
 
     let file_scelto = &files[scelta];
-    println!("{} {}", "Hai scelto:".green(), file_scelto.bold());
+    if usa_colori {
+         println!("{} {}", "Hai scelto:".green(), file_scelto.bold());
+    } else {
+        println!("Hai scelto: {}", file_scelto);
+    }
 
-    descrizione_file(file_scelto);
+    if config.menu.mostra_descrizione {
+        descrizione_file(file_scelto, config.menu.colori);
+    }
+
 
     esegui_file(file_scelto);
 }
@@ -134,11 +181,15 @@ fn esegui_file(percoeso: &str) {    // 7. Eseguo il file scelto
 }
 
 // funzione per descrivere il file scelto, mostra la dimensione, l'ultima modifica e un'icona in base all'estensione del file
-fn descrizione_file(percorso: &str) {  
+fn descrizione_file(percorso: &str, usa_colori: bool) {  
     let metadata = match fs::metadata(percorso) {
         Ok(m) => m,
         Err(_) => {
-            println!("{}", "Impossibile leggere i metadati del file".red());
+            if usa_colori{
+                println!("{}", "Impossibile leggere i metadati del file".red());
+            } else {
+                println!("Impossibile leggere i metadati del file");
+            }
             return;
         }
     };
@@ -154,12 +205,23 @@ fn descrizione_file(percorso: &str) {
     // Icona
     let icona = icona_file(percorso);
 
-    println!("\n{}", "=== DESCRIZIONE FILE ===".bold().blue());
-    println!("{} {}", "File:".bold(), percorso.yellow());
-    println!("{} {}", "Tipo:".bold(), icona);
-    println!("{} {}", "Dimensione:".bold(), dimensione.green());
-    println!("{} {}", "Ultima modifica:".bold(), data_formattata.cyan());
-    println!("{}", "=========================".bold().blue());
+    if usa_colori {
+        println!("\n{}", "=== DESCRIZIONE FILE ===".bold().blue());
+        println!("{} {}", "File:".bold(), percorso.yellow());
+        println!("{} {}", "Tipo:".bold(), icona);
+        println!("{} {}", "Dimensione:".bold(), dimensione.green());
+        println!("{} {}", "Ultima modifica:".bold(), data_formattata.cyan());
+        println!("{}", "=========================".bold().blue());
+    } else {
+        println!("\n=== DESCRIZIONE FILE ===");
+        println!("File: {}", percorso);
+        println!("{} {}", "Tipo:", icona);
+        println!("{} {}", "Dimensione:", dimensione);
+        println!("{} {}", "Ultima modifica:", data_formattata);
+        println!("{}", "=========================");
+    }
+
+    
 }
 
 // funzione per formattare la dimensione del file in modo leggibile, ad esempio 1.5 MB invece di 1572864 B

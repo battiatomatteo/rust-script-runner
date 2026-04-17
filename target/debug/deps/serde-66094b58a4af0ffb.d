@@ -1,0 +1,12 @@
+C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\target\debug\deps\serde-66094b58a4af0ffb.d: C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\target\debug\build\serde-9b76ea22f6fba3a5\out/private.rs
+
+C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\target\debug\deps\libserde-66094b58a4af0ffb.rmeta: C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\target\debug\build\serde-9b76ea22f6fba3a5\out/private.rs
+
+C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\baddy\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+C:\Users\baddy\Desktop\progetto_rust\rust-script-runner\target\debug\build\serde-9b76ea22f6fba3a5\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\target\\debug\\build\\serde-9b76ea22f6fba3a5\\out

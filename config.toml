@@ -1,0 +1,8 @@
+# percorso del cartella principale 
+
+cartella = "C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\script_bat"
+
+# impostazioni del menu
+[menu]
+colori = true 
+mostra_descrizione = true 
