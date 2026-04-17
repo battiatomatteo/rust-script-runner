@@ -24,3 +24,7 @@ pub fn icona_file(percorso: &str) -> String {
         _     => "❓".red().bold().to_string(),
     }
 }
+
+
+
+// "C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\script_bat"

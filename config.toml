@@ -1,5 +1,5 @@
-cartella = "cc"
+cartella = "C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\script_bat"
 
 [menu]
 colori = true
-mostra_descrizione = true
+mostra_descrizione = false

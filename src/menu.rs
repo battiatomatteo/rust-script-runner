@@ -2,7 +2,7 @@ use colored::*;
 use dialoguer::{Select, Input};
 
 use crate::config::{Config, salva_config};
-use crate::file_ops::{leggi_file, descrizione_file, esegui_file};
+use crate::file_ops::{leggi_file, descrizione_file, esegui_file, mostra_info};
 
 pub fn menu_principale() {
     let mut config = crate::config::carica_config();
@@ -18,10 +18,13 @@ pub fn menu_principale() {
         }
 
         let opzioni = vec![
-            "Lista script da eseguire",
+            "Lista script ed esegui",
             "Cambia cartella",
+            "Impostazioni",
+            "Informazioni",
             "Esci",
         ];
+
 
         let scelta = Select::new()
             .with_prompt("Seleziona un'opzione")
@@ -49,10 +52,9 @@ pub fn menu_principale() {
                 config.cartella = path.clone();
                 salva_config(&config);
             }
-            2 => {
-                println!("{}", "Uscita in corso...".red().bold());
-                break;
-            }
+            2 => menu_impostazioni(&mut config),
+            3 => mostra_info(config.menu.colori),
+            4 => { println!("Uscita..."); break; }
             _ => println!("Scelta non valida."),
         }
     }
@@ -80,4 +82,34 @@ pub fn scegli_file(files: &Vec<String>, config: &Config) {
     }
 
     esegui_file(file_scelto);
+}
+
+pub fn menu_impostazioni(config: &mut Config) {
+    let opzioni = vec![
+        "Attiva/Disattiva colori",
+        "Mostra/Nascondi descrizione file",
+        "Torna al menu principale",
+    ];
+
+    let scelta = Select::new()
+        .with_prompt("Impostazioni")
+        .items(&opzioni)
+        .default(0)
+        .interact()
+        .unwrap();
+
+    match scelta {
+        0 => {
+            config.menu.colori = !config.menu.colori;
+            salva_config(config);
+            println!("Colori: {}", config.menu.colori);
+        }
+        1 => {
+            config.menu.mostra_descrizione = !config.menu.mostra_descrizione;
+            salva_config(config);
+            println!("Descrizione file: {}", config.menu.mostra_descrizione);
+        }
+        2 => return,
+        _ => {}
+    }
 }

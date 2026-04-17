@@ -80,3 +80,20 @@ pub fn descrizione_file(percorso: &str, usa_colori: bool) {
         println!("=========================");
     }
 }
+
+pub fn mostra_info(usa_colori: bool) {
+    if usa_colori {
+        println!("\n{}", "\n=== INFO PROGRAMMA ===".bold().blue());
+        println!("{}", "Script Runner Rust".yellow());
+        println!("{}", "Versione: 1.0.0".white());
+        println!("{}", "Autore: Battiato Matteo".green());
+        println!("{}", "-----------------------".bold().blue());
+    } else {
+        println!("\n=== INFO PROGRAMMA ===");
+        println!("Script Runner Rust");
+        println!("Versione: 1.0.0");
+        println!("Autore: Battiato Matteo");
+        println!("-----------------------");
+    }
+}
+
