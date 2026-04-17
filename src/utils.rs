@@ -25,6 +25,6 @@ pub fn icona_file(percorso: &str) -> String {
     }
 }
 
-
+ 
 
 // "C:\\Users\\baddy\\Desktop\\progetto_rust\\rust-script-runner\\script_bat"
