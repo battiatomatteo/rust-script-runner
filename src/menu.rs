@@ -1,6 +1,5 @@
 use colored::*;
 use dialoguer::{Select, Input};
-
 use crate::config::{Config, salva_config};
 use crate::file_ops::{leggi_file, descrizione_file, esegui_file, mostra_info};
 
@@ -57,6 +56,7 @@ pub fn menu_principale() {
             4 => { println!("Uscita..."); break; }
             _ => println!("Scelta non valida."),
         }
+
     }
 }
 
